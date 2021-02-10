@@ -1,5 +1,4 @@
 # conda activate genemarker
-# gmhmme3 search for eukaryote genes based on the model in the metagenome
 
 alias python='/usr/bin/python3'
 export PERL5LIB=/home/drissi/miniconda3/envs/genemarker/lib/site_perl/5.26.2/ 
