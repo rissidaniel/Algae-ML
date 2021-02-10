@@ -1,0 +1,80 @@
+
+cp *_biotech_applications.txt biotech_applications_all/
+
+cd biotech_applications_all/
+
+for f in *_biotech_applications.txt;
+        do SAMPLE=`basename ${f%%_biotech_applications.txt}`;
+        echo "$SAMPLE";
+	cat "$SAMPLE"_biotech_applications.txt | tr '[:]' '[\t]' > tmp && mv tmp "$SAMPLE"_biotech_applications.txt; 
+done;
+
+sed -i 's/.txt//g' *_biotech_applications.txt
+
+sed -i 's/Chlamydomonas_reinhardtii_//g' *_biotech_applications.txt
+sed -i 's/Cyanobacterium_aponinum_//g' *_biotech_applications.txt
+sed -i 's/Geitlerinema_sp._//g' *_biotech_applications.txt
+sed -i 's/Klebsormidium_nitens_//g' *_biotech_applications.txt
+sed -i 's/Nostoc_sp._//g' *_biotech_applications.txt
+sed -i 's/Chlorogloea_sp._//g' *_biotech_applications.txt
+sed -i 's/Galdieria_sulphuraria_//g' *_biotech_applications.txt
+sed -i 's/Haematococcus_lacustris_//g' *_biotech_applications.txt
+sed -i 's/Nostoc_sphaeroides_//g' *_biotech_applications.txt
+sed -i 's/Trebouxia_sp._//g' *_biotech_applications.txt
+
+mkdir part2/
+
+cp *_biotech_applications.txt part2/
+
+cd part2
+
+
+
+# Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt	Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+
+# STEP1
+
+awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt| awk '{if(!seen[$1]++){print $0}}' >pattern_content
+
+# STEP2
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Chlamydomonas_reinhardtii_biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Chlamydomonas_reinhardtii_biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Chlamydomonas_reinhardtii_biotech_applications_o.txt 
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Cyanobacterium_aponinum_biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Cyanobacterium_aponinum_biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Cyanobacterium_aponinum_biotech_applications_o.txt 
+
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Geitlerinema_sp._biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Geitlerinema_sp._biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Geitlerinema_sp._biotech_applications_o.txt 
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Klebsormidium_nitens_biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Klebsormidium_nitens_biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Klebsormidium_nitens_biotech_applications_o.txt 
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Nostoc_sp._biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Nostoc_sp._biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Nostoc_sp._biotech_applications_o.txt 
+
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Chlorogloea_sp._biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Chlorogloea_sp._biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Chlorogloea_sp._biotech_applications_o.txt 
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Galdieria_sulphuraria_biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Galdieria_sulphuraria_biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Galdieria_sulphuraria_biotech_applications_o.txt 
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Haematococcus_lacustris_biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Haematococcus_lacustris_biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Haematococcus_lacustris_biotech_applications_o.txt 
+
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Nostoc_sphaeroides_biotech_applications.txt >/dev/null; if [[ $? == 0 ]]; then grep $i Nostoc_sphaeroides_biotech_applications.txt | awk '{print $2}'; else echo "                                "; fi; done > Nostoc_sphaeroides_biotech_applications_o.txt 
+
+for i in `awk '{print $1}' Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt
+| sort | uniq`; do grep "$i" Trebouxia_sp._biotech_applications.txt>/dev/null; if [[ $? == 0 ]]; then grep $i Trebouxia_sp._biotech_applications.txt| awk '{print $2}'; else echo "                                "; fi; done > Trebouxia_sp._biotech_applications_o.txt
+
+
+
+# step3
+
+ paste pattern_content Chlamydomonas_reinhardtii_biotech_applications_o.txt Cyanobacterium_aponinum_biotech_applications_o.txt Geitlerinema_sp._biotech_applications_o.txt Klebsormidium_nitens_biotech_applications_o.txt Nostoc_sp._biotech_applications_o.txt Chlorogloea_sp._biotech_applications_o.txt Galdieria_sulphuraria_biotech_applications_o.txt Haematococcus_lacustris_biotech_applications_o.txt Nostoc_sphaeroides_biotech_applications_o.txt Trebouxia_sp._biotech_applications_o.txt
+ |sed '1i   Chlamydomonas_reinhardtii_biotech_applications.txt Cyanobacterium_aponinum_biotech_applications.txt Geitlerinema_sp._biotech_applications.txt Klebsormidium_nitens_biotech_applications.txt Nostoc_sp._biotech_applications.txt Chlorogloea_sp._biotech_applications.txt Galdieria_sulphuraria_biotech_applications.txt Haematococcus_lacustris_biotech_applications.txt Nostoc_sphaeroides_biotech_applications.txt Trebouxia_sp._biotech_applications.txt'
+
