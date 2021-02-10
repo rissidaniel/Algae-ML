@@ -1,4 +1,6 @@
 # conda activate genemarker
+# gmhmme3 search for eukaryote genes based on the model in the metagenome
+
 alias python='/usr/bin/python3'
 export PERL5LIB=/home/drissi/miniconda3/envs/genemarker/lib/site_perl/5.26.2/ 
 
@@ -11,7 +13,3 @@ for f in ~/algas/proteomes/*.faa;
 done;
 
 echo "the end"
-
-
-
-#### replace diamond by prodigal or even better GlimmerHMM, EU-Detect ...
